@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Scent of a Song — 미팅용 슬라이드 웹사이트
 
-## Getting Started
+Next.js 16 · Tailwind CSS 4 · Framer Motion
 
-First, run the development server:
+## 실행
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run build && npm start   # http://localhost:3000  (미팅 때는 이 방식 권장)
+npm run dev                  # 수정하면서 볼 때
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 조작
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| 키 | 동작 |
+| --- | --- |
+| → ↓ Space Enter / ← ↑ | 다음 / 이전 |
+| G | 목차 (좌측 하단 숫자 클릭도 가능) |
+| F | 전체 화면 |
+| Home / End | 처음 / 끝 |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+트랙패드·휠은 한 번 스크롤에 한 장, 터치는 스와이프. 주소 `#7` 은 7번 슬라이드로 바로 열립니다.
+마우스를 2.6초 움직이지 않으면 커서가 숨겨집니다.
 
-## Learn More
+## 구조
 
-To learn more about Next.js, take a look at the following resources:
+- `src/slides/` — 슬라이드별 문구·이미지 (`index.ts` 가 순서)
+- `src/slides/content.ts` — 수록곡 목록·곡 수 (한 곳에서 수정)
+- `src/deck/` — 1920×1080 스테이지, 그리드, 애니메이션, 네비게이션
+- `src/assets/` — 원본 사진 복사본 (`IMG_2383` → `elegy-poster.jpg` 등, `slides/assets.ts` 주석 참고)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+모든 슬라이드는 1920×1080 고정 캔버스에 그린 뒤 화면 크기에 맞춰 통째로 확대·축소합니다.
+노트북·외부 모니터·프로젝터 어디서든 간격과 줄바꿈이 같습니다.
